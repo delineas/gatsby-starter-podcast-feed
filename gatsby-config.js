@@ -5,9 +5,9 @@ module.exports = {
   plugins: [
 'gatsby-plugin-react-helmet',
                 {
-                        resolve: 'gatsby-source-rss',
+                        resolve: 'gatsby-source-feed',
                         options: {
-                                rssURL: 'https://www.ivoox.com/podcast-1bit-memoria_fg_f1469800_filtro_1.xml'
+                                feedURL: 'https://www.ivoox.com/podcast-1bit-memoria_fg_f1469800_filtro_1.xml'
                         }
                 },
 ],

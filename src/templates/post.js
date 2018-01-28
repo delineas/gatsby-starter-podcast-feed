@@ -1,15 +1,24 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import linkifyHtml from 'linkifyjs/html'
+import Audio from 'react-audioplayer';
 
 class PostTemplate extends Component {
   render() {
-    const post = this.props.data.allRssFeedItem
+    const post = this.props.data.allPodcastFeedItem
+console.log(post);
+    let playlist = [{src: post.edges[0].node.enclosure.url, name: post.edges[0].node.title}]
 
     return (
       <div>
         <h1 dangerouslySetInnerHTML={{ __html: post.edges[0].node.title }} />
-        <div dangerouslySetInnerHTML={{ __html: linkifyHtml(post.edges[0].node.content).replace(/(?:\r\n|\r|\n)/g, '<br />') }} />
+        <div dangerouslySetInnerHTML={{ __html: linkifyHtml(post.edges[0].node.description).replace(/(?:\r\n|\r|\n)/g, '<br />') }} />
+        <Audio
+          width={600}
+          height={400}
+          autoPlay={false}
+          playlist={ playlist }
+        />
       </div>
     )
   }
@@ -25,14 +34,19 @@ export default PostTemplate
 
 export const pageQuery = graphql`
   query currentPostQuery($guid: String!) {
-    allRssFeedItem (limit: 1, filter: { guid: { eq: $guid } }){
+    allPodcastFeedItem (limit: 1, filter: { guid: { eq: $guid } }){
         edges {
           node {
             guid,
             title,
-            content,
-            isoDate(formatString: "DD/MM/YYYY"),
-            link
+            description,
+            published(formatString: "DD/MM/YYYY"),
+            link,
+            enclosure {
+              url,
+              filesize,
+              type
+            }
           }
         }
     }

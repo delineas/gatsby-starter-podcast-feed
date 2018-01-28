@@ -22,14 +22,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     graphql(
       `
         {
-            allRssFeedItem {
+            allPodcastFeedItem {
                 edges {
                   node {
                     id,
                     guid,
                     title,
-                    content,
-                    isoDate(formatString: "DD/MM/YYYY"),
+                    description,
+                    published(formatString: "DD/MM/YYYY"),
                     link
                   }
                 }
@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         // We want to create a detailed page for each
         // page node. We'll just use the Wordpress Slug for the slug.
         // The Page ID is prefixed with 'PAGE_'
-        _.each(result.data.allRssFeedItem.edges, edge => {
+        _.each(result.data.allPodcastFeedItem.edges, edge => {
           // Gatsby uses Redux to manage its internal state.
           // Plugins and sites can use functions like "createPage"
           // to interact with Gatsby.

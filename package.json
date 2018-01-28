@@ -7,9 +7,12 @@
     "gatsby": "^1.9.158",
     "gatsby-link": "^1.6.34",
     "gatsby-plugin-react-helmet": "^2.0.3",
+    "gatsby-source-feed": "./local_modules/gatsby-source-feed",
     "gatsby-source-medium": "^1.0.9",
-    "gatsby-source-rss": "file:local_modules/gatsby-source-rss",
+    "gatsby-source-rss": "git+https://github.com/jondubin/gatsby-source-rss.git",
     "linkifyjs": "^2.1.5",
+    "node-podcast-parser": "https://github.com/delineas/node-podcast-parser/tarball/master",
+    "react-audioplayer": "^0.3.1",
     "react-helmet": "^5.2.0",
     "slugify": "^1.2.9",
     "url-parse": "^1.2.0"
