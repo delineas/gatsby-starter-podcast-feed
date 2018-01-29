@@ -1,3 +1,13 @@
+# gatsby-starter-podcast-feed
+
+Based in gatsby-starter-default
+
+Add dependencies:
++ gatsby-source-feed: XML source (see gatsby-config.js)
++ react-audio-player: React Audio Player Component
++ linkifyjs: Convert plain text in links
++ slugify: Create slugs from item titles
+
 # gatsby-starter-default
 The default Gatsby starter
 
