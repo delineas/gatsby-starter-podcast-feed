@@ -1,24 +1,27 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import linkifyHtml from 'linkifyjs/html'
-import Audio from 'react-audioplayer';
+//import Audio from 'react-audioplayer';
+import ReactAudioPlayer from 'react-audio-player';
+
 
 class PostTemplate extends Component {
   render() {
     const post = this.props.data.allPodcastFeedItem
-console.log(post);
-    let playlist = [{src: post.edges[0].node.enclosure.url, name: post.edges[0].node.title}]
+
+    let playlist = [{src: post.edges[0].node.enclosure.url}]
+    let songs = [{url: post.edges[0].node.enclosure.url}]
 
     return (
       <div>
         <h1 dangerouslySetInnerHTML={{ __html: post.edges[0].node.title }} />
-        <div dangerouslySetInnerHTML={{ __html: linkifyHtml(post.edges[0].node.description).replace(/(?:\r\n|\r|\n)/g, '<br />') }} />
-        <Audio
-          width={600}
-          height={400}
+        <ReactAudioPlayer
+          src={post.edges[0].node.enclosure.url}
           autoPlay={false}
-          playlist={ playlist }
+          controls
         />
+
+        <div dangerouslySetInnerHTML={{ __html: linkifyHtml(post.edges[0].node.description).replace(/(?:\r\n|\r|\n)/g, '<br />') }} />
       </div>
     )
   }
